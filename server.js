@@ -11,19 +11,15 @@ var PORT = process.env.PORT || 3000;
 
 var app = express();
 
-// app.use(logger("dev"));
+ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Make public a static folder
 app.use(express.static("public"));
-// Connect Handlebars to our Express app
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-// Have every request go through our route middleware
-// app.use(routes);
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
-​
+
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/scraper'
 // Connect to the Mongo DB
 mongoose.connect(MONGODB_URI);
 app.get("/", function (req, res) {
